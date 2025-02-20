@@ -8,7 +8,7 @@ public:
 };
 
 Node * LSearch(Node *p, int key){
-    Node *q;
+    Node *q = new Node;
     Node *head = q;
 
     while(p != nullptr){
