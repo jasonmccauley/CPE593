@@ -44,6 +44,8 @@ void Insert(Node *p, int index, int d){
         temp->next = p->next;
         p->next = temp;
     }
+
+    display(head);
 }
 
 int main(){
@@ -67,8 +69,7 @@ int main(){
     }
 
     Node *p = head;
-    Insert(p, 3, 3);
-    display(p);
+    Insert(p, 0, 3);
 
     return 0;
 }
