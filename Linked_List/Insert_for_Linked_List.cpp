@@ -5,7 +5,24 @@ class Node{
 public:
     int data;
     Node *next;
-};
+}; 
+Node *first = nullptr;
+
+void create(int A[], int n){
+    Node *temp, *last;
+    first = new Node;
+    first->data = A[0];
+    first->next = nullptr;
+    last = first;
+
+    for(int i = 1; i < n; i++){
+        temp = new Node;
+        temp->data = A[i];
+        temp->next = nullptr;
+        last->next = temp;
+        last = temp;
+    }
+}
 
 int count(Node *p){
     int c = 0;
@@ -16,8 +33,8 @@ int count(Node *p){
     return c;
 }
 
-void display(Node *p){
-    while(p){
+void Display(Node *p){
+    while(p != nullptr){
         cout << p->data << " -> " << flush;
         p = p->next;
     }
@@ -25,7 +42,6 @@ void display(Node *p){
 
 void Insert(Node *p, int index, int d){
     Node *temp;
-    Node *head = p;
 
     if(index < 0 || index > count(p)){
         return;
@@ -34,42 +50,24 @@ void Insert(Node *p, int index, int d){
     temp->data = d;
 
     if(index == 0){
-        temp->next = head;
-        head = temp;
+        temp->next = first;
+        first = temp;
     }
     else{
         for(int i=1; i<index; i++){
-            p=p->next;
+            p = p->next;
         }
         temp->next = p->next;
         p->next = temp;
     }
-
-    display(head);
 }
 
 int main(){
     int A[] = {10, 20, 30, 40, 50};
+    create(A, 5);
 
-    Node *temp;
-    Node *last;
-    Node *head = new Node;
-
-    head->data = A[0];
-    head->next = nullptr;
-    last = head;
-
-    for(int i = 1; i < sizeof(A)/sizeof(A[0]); i++){
-        temp = new Node;
-        temp->data = A[i];
-        temp->next = nullptr;
-
-        last->next = temp;
-        last = temp;
-    }
-
-    Node *p = head;
-    Insert(p, 0, 3);
-
+    Insert(first, 0, 5);
+    Insert(first, 4, 33);
+    Display(first);
     return 0;
 }
